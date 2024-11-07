@@ -17,14 +17,30 @@ from sklearn import datasets
  
 # Copy and paste the code for that function here:
 # -----------------------------------------------
-def my_mlp(w, X, sigma=np.tanh):
-    W1 = np.array(w[0:4*6]).reshape(4,6)
-    W2 = np.array(w[4*6:7*4+6*4]).reshape(7,4)
-    W3 = np.array(w[7*4+6*4:]).reshape(1,7)
-   
+def my_mlp(w, X, n_input=6, n_hidden_1=4, n_hidden_2=7, sigma=np.tanh):
+    """
+    Implement multilayer perceptron with two hidden layers. 
+
+    Args:
+        w (np.array): Weight of size (n_inputs * n_hidden_1 + n_hidden_1 * n_hidden_2 + n_hidden_2)
+        X (np.array): Matrix with n_input features
+        n_input (int): Input nodes
+        n_hidden_1 (int): First hidden layer nodes
+        n_hidden_2 (int): Second hidden layer nodes
+        sigma (function): Activation function of size
+
+    Returns:
+        np.array: Output vector
+    """
+
+    W1 = w[0: n_input * n_hidden_1].reshape((n_hidden_1, n_input))
+    W2 = w[W1.size: W1.size + n_hidden_1 * n_hidden_2].reshape((n_hidden_2, n_hidden_1))
+    W3 = w[W1.size + W2.size: W1.size + W2.size + n_hidden_2 * 1].reshape((1, n_hidden_2))
+
     a1 = sigma(W1 @ X)
     a2 = sigma(W2 @ a1)
-    f  = sigma(W3 @ a2)
+    f = sigma(W3 @ a2)
+    
     return f
 # -----------------------------------------------
  
@@ -38,10 +54,11 @@ def my_mlp(w, X, sigma=np.tanh):
  
 # Copy and paste the code for that function here:
 # -----------------------------------------------
-def MSE_func(w, X, y): # give the appropriate name and arguments
+def MSE_func(w, X, y):
     f = my_mlp(w, X)
-    MSE = np.sum((y-f)**2)
-    return MSE
+    mse = np.sum((f - y)**2)
+    
+    return mse
 # -----------------------------------------------
  
 # Task 3:
@@ -57,8 +74,8 @@ def MSE_func(w, X, y): # give the appropriate name and arguments
 # Copy and paste the code for that function here:
 # -----------------------------------------------
 def dR(beta, x, y):
-    dbeta_0 = 2*np.mean((beta[0] + beta[1]*x - y))   # implement the above formula for dR/dβ₀
-    dbeta_1 = 2*np.mean((beta[0] + beta[1]*x - y)*x) # implement the above formula for dR/dβ₁
+    dbeta_0 = 2 * np.mean(beta[0] + beta[1] * x - y)
+    dbeta_1 = 2 * np.mean(x * (beta[0] + beta[1] * x - y))
+
     return np.array([dbeta_0, dbeta_1])
- 
 # -----------------------------------------------
