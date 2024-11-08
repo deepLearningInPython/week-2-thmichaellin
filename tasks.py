@@ -20,8 +20,8 @@ from sklearn import datasets
 # -----------------------------------------------
 
 
-def my_mlp(w: np.ndarray, X: np.ndarray, n_input: int=6,
-           n_hidden_1: int=4, n_hidden_2: int=7,
+def my_mlp(w: np.ndarray, X: np.ndarray, n_input: int = 6,
+           n_hidden_1: int = 4, n_hidden_2: int = 7,
            sigma=np.tanh) -> np.ndarray:
     """
     Implement multilayer perceptron with two hidden layers.
