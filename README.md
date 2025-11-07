@@ -26,11 +26,8 @@ There are plenty of online resources which demo how to clone a repo e.g. here: h
 Check under Actions on GitHub to see how many points you received. 
 You can also run the grading files to preview whether your solution passes, but you are not allowed to change these files.
 
-## Step 4:
-Also add this week's kaggle certificate to the repository (https://www.kaggle.com/learn/intro-to-deep-learning). Name the file `certificate.pdf` 
 
-
-## Step 5: 
+## Step 4: 
 Push your changes to the repo back to github. The grading will occur automatically but might take a minute. If you have questions or problems, make sure to come to the tutorial on Friday!
 
 Again, the add/commit/push workflow of github is explained in various places online: https://www.earthdatascience.org/workshops/intro-version-control-git/basic-git-commands)
